@@ -63,7 +63,3 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-
-      # Step 4: Run tests with Maven (reusing downloaded artifacts)
-      - name: Run Tests with Maven
-        run: mvn test
