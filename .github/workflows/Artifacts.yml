@@ -26,7 +26,7 @@ jobs:
     steps:
       - shell: bash
         run: |
-          expr ${{ inputs.input1 }}+${{ inputs.input2 }} > addition.txt
+          expr ${{ inputs.input_1 }}+${{ inputs.input_2 }} > addition.txt
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v4
         with:
@@ -41,15 +41,15 @@ jobs:
       - name: Download math result for job 1
         uses: actions/download-artifact@v4
         with:
-          name: addedResult
+          name: addition
       - shell: bash
         run: |
           value=`cat addition.txt`
-          expr $value \* ${{ inputs.input3 }} > multiplication.txt
+          expr $value \* ${{ inputs.input_3 }} > multiplication.txt
       - name: Upload math result for job 2
         uses: actions/upload-artifact@v4
         with:
-          name: multiplication
+          name: Final
           path: multiplication.txt
 
   job_3:
@@ -64,5 +64,5 @@ jobs:
       - name: Print the final result
         shell: bash
         run: |
-          value=`cat finalResult.txt`
+          value=`cat multiplication.txt`
           echo The result is $value
